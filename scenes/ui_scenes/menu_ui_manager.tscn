@@ -1,15 +1,15 @@
 [gd_scene load_steps=2 format=3 uid="uid://c2m5hukyvdiwi"]
 
-[ext_resource type="Script" path="res://scripts/managers/ui_manager.gd" id="1_hik8a"]
+[ext_resource type="Script" path="res://scripts/managers/ui_manager.gd" id="1_603pn"]
 
-[node name="GUIManager" type="Control" groups=["player"]]
+[node name="MenuUIManager" type="Control" groups=["player"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_hik8a")
+script = ExtResource("1_603pn")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -31,6 +31,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/MenuVBox/MenuRowVBox"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Username"
 
 [node name="UsernameHBox" type="HBoxContainer" parent="MarginContainer/MenuVBox/MenuRowVBox"]
@@ -46,4 +47,20 @@ custom_minimum_size = Vector2(60, 40)
 layout_mode = 2
 text = "Set"
 
+[node name="PlayButton" type="Button" parent="MarginContainer/MenuVBox/MenuRowVBox"]
+layout_mode = 2
+text = "Play"
+
+[node name="SettingsButton" type="Button" parent="MarginContainer/MenuVBox/MenuRowVBox"]
+layout_mode = 2
+disabled = true
+text = "Settings"
+
+[node name="ExitButton" type="Button" parent="MarginContainer/MenuVBox/MenuRowVBox"]
+layout_mode = 2
+text = "Exit"
+
 [connection signal="button_down" from="MarginContainer/MenuVBox/MenuRowVBox/UsernameHBox/Button" to="." method="_on_button_button_down"]
+[connection signal="pressed" from="MarginContainer/MenuVBox/MenuRowVBox/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MarginContainer/MenuVBox/MenuRowVBox/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MarginContainer/MenuVBox/MenuRowVBox/ExitButton" to="." method="_on_exit_button_pressed"]

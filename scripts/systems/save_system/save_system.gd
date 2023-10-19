@@ -47,7 +47,7 @@ func save_file(file_name, save_group_name):
 		var node_data = node.call("save")
 		
 		node_data["filename"] = node.get_scene_file_path()
-		node_data["parent"] = get_parent().get_path()
+		node_data["parent"] = node.get_parent().get_path()
 		
 		var json_string = JSON.stringify(node_data)
 		

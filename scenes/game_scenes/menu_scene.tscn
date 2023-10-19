@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://kkrey2abeq40"]
+
+[ext_resource type="PackedScene" uid="uid://bxs34sajurpti" path="res://scenes/ui_scenes/menu_ui.tscn" id="1_53ram"]
+[ext_resource type="Texture2D" uid="uid://mryltwsl05nr" path="res://assets/background_720p.png" id="2_rvxsd"]
+
+[node name="MenuScene" type="Node"]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+position = Vector2(640, 360)
+texture = ExtResource("2_rvxsd")
+
+[node name="MenuUI" parent="." instance=ExtResource("1_53ram")]

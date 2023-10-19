@@ -1,17 +1,45 @@
-[gd_scene load_steps=5 format=3 uid="uid://bv156ine3pyi3"]
+[gd_scene load_steps=4 format=3 uid="uid://bv156ine3pyi3"]
 
-[ext_resource type="Script" path="res://scripts/managers/game_scene_manager.gd" id="1_2qgpy"]
-[ext_resource type="Script" path="res://scripts/feature_tests/TestNode1.gd" id="2_lojp3"]
-[ext_resource type="Script" path="res://scripts/feature_tests/TestNode2.gd" id="3_omv27"]
-[ext_resource type="PackedScene" uid="uid://ba5t71q7vdb2y" path="res://scenes/save_test.tscn" id="4_qlkhk"]
+[ext_resource type="PackedScene" uid="uid://bxafbr6alb0pl" path="res://scenes/enemy_walk_path.tscn" id="1_dqior"]
+[ext_resource type="PackedScene" uid="uid://demvrv03udy2r" path="res://scenes/enemy.tscn" id="2_dvdyn"]
 
-[node name="GameScene" type="Node2D"]
-script = ExtResource("1_2qgpy")
+[sub_resource type="GDScript" id="GDScript_6e5p7"]
+script/source = "extends Node
 
-[node name="TestNode1" type="Node2D" parent="."]
-script = ExtResource("2_lojp3")
+func _input(event):
+	if event.is_action_pressed(\"debug_button_0\"):
+		get_tree().root.get_node(\"Main/SceneManager\").switch_scene(\"game_scene2\")
+"
 
-[node name="TestNode2" type="Node2D" parent="TestNode1"]
-script = ExtResource("3_omv27")
+[node name="GameScene" type="Node"]
+script = SubResource("GDScript_6e5p7")
 
-[node name="SaveTest" parent="." instance=ExtResource("4_qlkhk")]
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="EnemyWalkPath" parent="Node2D" node_paths=PackedStringArray("markers") instance=ExtResource("1_dqior")]
+markers = [NodePath("Marker2D"), NodePath("Marker2D2"), NodePath("Marker2D3"), NodePath("Marker2D4"), NodePath("Marker2D5")]
+
+[node name="Marker2D" parent="Node2D/EnemyWalkPath" index="0"]
+position = Vector2(198, 233)
+
+[node name="Marker2D2" type="Marker2D" parent="Node2D/EnemyWalkPath"]
+position = Vector2(354, 133)
+
+[node name="Marker2D3" type="Marker2D" parent="Node2D/EnemyWalkPath"]
+position = Vector2(490, 233)
+
+[node name="Marker2D4" type="Marker2D" parent="Node2D/EnemyWalkPath"]
+position = Vector2(533, 445)
+
+[node name="Marker2D5" type="Marker2D" parent="Node2D/EnemyWalkPath"]
+position = Vector2(873, 540)
+
+[node name="CharacterBody2D" parent="Node2D" instance=ExtResource("2_dvdyn")]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[editable path="Node2D/EnemyWalkPath"]

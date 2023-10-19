@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
 @onready var save_system = get_node("/root/Main/SaveSystem")
 
