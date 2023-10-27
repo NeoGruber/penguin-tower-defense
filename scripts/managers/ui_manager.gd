@@ -16,7 +16,6 @@ var player_name = default_name
 
 func _ready():
 	player_name_line_edit.text = player_name
-	print("set line text")
 
 func _on_button_button_down():
 	var instance = confirm_dialog.instantiate()

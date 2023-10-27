@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cny5g2eqpteqr"]
+[gd_scene load_steps=5 format=3 uid="uid://cny5g2eqpteqr"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_w0yqr"]
 [ext_resource type="Script" path="res://scripts/systems/save_system/save_system.gd" id="2_4g7si"]
 [ext_resource type="PackedScene" uid="uid://16hk2ehs26re" path="res://scenes/game_scenes/scene_manager.tscn" id="2_odk4s"]
+[ext_resource type="Script" path="res://scripts/systems/InputSystem.gd" id="4_cn6wq"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_w0yqr")
@@ -11,3 +12,6 @@ script = ExtResource("1_w0yqr")
 script = ExtResource("2_4g7si")
 
 [node name="SceneSystem" parent="." instance=ExtResource("2_odk4s")]
+
+[node name="InputSystem" type="Node" parent="."]
+script = ExtResource("4_cn6wq")

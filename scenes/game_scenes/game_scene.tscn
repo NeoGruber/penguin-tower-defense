@@ -1,7 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://bv156ine3pyi3"]
+[gd_scene load_steps=9 format=3 uid="uid://bv156ine3pyi3"]
 
+[ext_resource type="PackedScene" uid="uid://djw6y1i2j5b5p" path="res://scenes/spawn_handler.tscn" id="1_584g3"]
 [ext_resource type="PackedScene" uid="uid://bxafbr6alb0pl" path="res://scenes/enemy_walk_path.tscn" id="1_dqior"]
-[ext_resource type="PackedScene" uid="uid://demvrv03udy2r" path="res://scenes/enemy.tscn" id="2_dvdyn"]
+[ext_resource type="Texture2D" uid="uid://b2podqnorrva5" path="res://assets/map.png" id="1_okpt7"]
+[ext_resource type="Script" path="res://scripts/systems/spawn_system/EnemySpawner.gd" id="2_kb53j"]
+[ext_resource type="Script" path="res://scripts/game_ui_manager.gd" id="5_khjxf"]
+[ext_resource type="PackedScene" uid="uid://cxwbk7q2arh36" path="res://scenes/entity_scenes/tower.tscn" id="6_6alyy"]
+[ext_resource type="PackedScene" uid="uid://cs40qs01w3q2v" path="res://scenes/ui_scenes/tower_ui_controller.tscn" id="7_gyoyw"]
 
 [sub_resource type="GDScript" id="GDScript_6e5p7"]
 script/source = "extends Node
@@ -14,32 +19,182 @@ func _input(event):
 [node name="GameScene" type="Node"]
 script = SubResource("GDScript_6e5p7")
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Game" type="Node2D" parent="."]
 
-[node name="EnemyWalkPath" parent="Node2D" node_paths=PackedStringArray("markers") instance=ExtResource("1_dqior")]
-markers = [NodePath("Marker2D"), NodePath("Marker2D2"), NodePath("Marker2D3"), NodePath("Marker2D4"), NodePath("Marker2D5")]
+[node name="SpawnSystem" parent="Game" instance=ExtResource("1_584g3")]
 
-[node name="Marker2D" parent="Node2D/EnemyWalkPath" index="0"]
-position = Vector2(198, 233)
+[node name="EnemySpawner" type="Node" parent="Game/SpawnSystem"]
+script = ExtResource("2_kb53j")
 
-[node name="Marker2D2" type="Marker2D" parent="Node2D/EnemyWalkPath"]
-position = Vector2(354, 133)
+[node name="Map" type="Sprite2D" parent="Game"]
+position = Vector2(642.5, 362.5)
+scale = Vector2(0.684896, 0.682407)
+texture = ExtResource("1_okpt7")
 
-[node name="Marker2D3" type="Marker2D" parent="Node2D/EnemyWalkPath"]
-position = Vector2(490, 233)
+[node name="EnemyWalkPath" parent="Game" node_paths=PackedStringArray("markers") instance=ExtResource("1_dqior")]
+markers = [NodePath("Marker2D"), NodePath("Marker2D2"), NodePath("Marker2D3"), NodePath("Marker2D4"), NodePath("Marker2D5"), NodePath("Marker2D5"), NodePath("Marker2D6"), NodePath("Marker2D7"), NodePath("Marker2D8"), NodePath("Marker2D9"), NodePath("Marker2D10"), NodePath("Marker2D11"), NodePath("Marker2D12"), NodePath("Marker2D13"), NodePath("Marker2D14"), NodePath("Marker2D15"), NodePath("Marker2D16"), NodePath("Marker2D17"), NodePath("Marker2D18"), NodePath("Marker2D19"), NodePath("Marker2D20"), NodePath("Marker2D21"), NodePath("Marker2D22"), NodePath("Marker2D23"), NodePath("Marker2D24"), NodePath("Marker2D25"), NodePath("Marker2D26"), NodePath("Marker2D27"), NodePath("Marker2D28"), NodePath("Marker2D29")]
 
-[node name="Marker2D4" type="Marker2D" parent="Node2D/EnemyWalkPath"]
-position = Vector2(533, 445)
+[node name="Marker2D" parent="Game/EnemyWalkPath" index="0"]
+position = Vector2(-55, 197)
 
-[node name="Marker2D5" type="Marker2D" parent="Node2D/EnemyWalkPath"]
-position = Vector2(873, 540)
+[node name="Marker2D2" type="Marker2D" parent="Game/EnemyWalkPath"]
+position = Vector2(41, 195)
 
-[node name="CharacterBody2D" parent="Node2D" instance=ExtResource("2_dvdyn")]
+[node name="Marker2D3" type="Marker2D" parent="Game/EnemyWalkPath"]
+position = Vector2(162, 153)
 
-[node name="Control" type="Control" parent="."]
+[node name="Marker2D4" type="Marker2D" parent="Game/EnemyWalkPath"]
+position = Vector2(248, 171)
+
+[node name="Marker2D5" type="Marker2D" parent="Game/EnemyWalkPath"]
+position = Vector2(276, 225)
+
+[node name="Marker2D6" type="Marker2D" parent="Game/EnemyWalkPath"]
+position = Vector2(210, 276)
+
+[node name="Marker2D7" type="Marker2D" parent="Game/EnemyWalkPath"]
+position = Vector2(157, 329)
+
+[node name="Marker2D8" type="Marker2D" parent="Game/EnemyWalkPath"]
+position = Vector2(175, 397)
+
+[node name="Marker2D9" type="Marker2D" parent="Game/EnemyWalkPath"]
+position = Vector2(224, 443)
+
+[node name="Marker2D10" type="Marker2D" parent="Game/EnemyWalkPath"]
+position = Vector2(301, 457)
+
+[node name="Marker2D11" type="Marker2D" parent="Game/EnemyWalkPath"]
+position = Vector2(390, 420)
+
+[node name="Marker2D12" type="Marker2D" parent="Game/EnemyWalkPath"]
+position = Vector2(422, 352)
+
+[node name="Marker2D13" type="Marker2D" parent="Game/EnemyWalkPath"]
+position = Vector2(403, 265)
+
+[node name="Marker2D14" type="Marker2D" parent="Game/EnemyWalkPath"]
+position = Vector2(383, 163)
+
+[node name="Marker2D15" type="Marker2D" parent="Game/EnemyWalkPath"]
+position = Vector2(456, 94)
+
+[node name="Marker2D16" type="Marker2D" parent="Game/EnemyWalkPath"]
+position = Vector2(593, 149)
+
+[node name="Marker2D17" type="Marker2D" parent="Game/EnemyWalkPath"]
+position = Vector2(647, 309)
+
+[node name="Marker2D18" type="Marker2D" parent="Game/EnemyWalkPath"]
+position = Vector2(545, 521)
+
+[node name="Marker2D19" type="Marker2D" parent="Game/EnemyWalkPath"]
+position = Vector2(558, 614)
+
+[node name="Marker2D20" type="Marker2D" parent="Game/EnemyWalkPath"]
+position = Vector2(773, 607)
+
+[node name="Marker2D21" type="Marker2D" parent="Game/EnemyWalkPath"]
+position = Vector2(832, 464)
+
+[node name="Marker2D22" type="Marker2D" parent="Game/EnemyWalkPath"]
+position = Vector2(866, 356)
+
+[node name="Marker2D23" type="Marker2D" parent="Game/EnemyWalkPath"]
+position = Vector2(969, 418)
+
+[node name="Marker2D24" type="Marker2D" parent="Game/EnemyWalkPath"]
+position = Vector2(1096, 443)
+
+[node name="Marker2D25" type="Marker2D" parent="Game/EnemyWalkPath"]
+position = Vector2(1117, 368)
+
+[node name="Marker2D26" type="Marker2D" parent="Game/EnemyWalkPath"]
+position = Vector2(1078, 222)
+
+[node name="Marker2D27" type="Marker2D" parent="Game/EnemyWalkPath"]
+position = Vector2(1131, 151)
+
+[node name="Marker2D28" type="Marker2D" parent="Game/EnemyWalkPath"]
+position = Vector2(1290, 133)
+
+[node name="Marker2D29" type="Marker2D" parent="Game/EnemyWalkPath"]
+position = Vector2(1376, 124)
+
+[node name="Tower" parent="Game" instance=ExtResource("6_6alyy")]
+position = Vector2(203, 218)
+metadata/_edit_group_ = true
+
+[node name="Tower2" parent="Game" instance=ExtResource("6_6alyy")]
+visible = false
+position = Vector2(459, 161)
+metadata/_edit_group_ = true
+
+[node name="Tower3" parent="Game" instance=ExtResource("6_6alyy")]
+visible = false
+position = Vector2(1046, 385)
+metadata/_edit_group_ = true
+
+[node name="Tower4" parent="Game" instance=ExtResource("6_6alyy")]
+visible = false
+position = Vector2(606, 557)
+metadata/_edit_group_ = true
+
+[node name="GameUI" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_khjxf")
 
-[editable path="Node2D/EnemyWalkPath"]
+[node name="Panel" type="Panel" parent="GameUI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -258.0
+offset_top = -217.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="GameUI/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameUI/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameUI/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="AutostartToggle" type="CheckButton" parent="GameUI/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Autostart"
+
+[node name="RoundStartButton" type="Button" parent="GameUI/Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Start"
+
+[node name="TowerUIController" parent="GameUI" instance=ExtResource("7_gyoyw")]
+layout_mode = 1
+offset_left = 991.0
+offset_top = 94.0
+offset_right = -2.0
+offset_bottom = -242.0
+
+[connection signal="pressed" from="GameUI/Panel/MarginContainer/VBoxContainer/HBoxContainer/AutostartToggle" to="GameUI" method="_on_autostart_toggle_pressed"]
+[connection signal="pressed" from="GameUI/Panel/MarginContainer/VBoxContainer/HBoxContainer/RoundStartButton" to="GameUI" method="_on_round_start_button_pressed"]
+
+[editable path="Game/EnemyWalkPath"]

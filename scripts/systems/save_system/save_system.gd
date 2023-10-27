@@ -83,8 +83,6 @@ func load_file(file_name, save_group_name):
 
 		var new_object = load(node_data["filename"]).instantiate()
 		get_node(node_data["parent"]).call_deferred("add_child", new_object)
-		print("add child")
-		print(new_object.name)
 		new_object.call("load_data", node_data)
 
 		for i in node_data.keys():

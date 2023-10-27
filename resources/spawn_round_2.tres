@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="SpawnRound" load_steps=8 format=3 uid="uid://dc2psei6d0tse"]
+
+[ext_resource type="Script" path="res://scripts/systems/spawn_system/spawn_round.gd" id="1_hao1p"]
+[ext_resource type="PackedScene" uid="uid://demvrv03udy2r" path="res://scenes/enemy.tscn" id="2_fkmtl"]
+[ext_resource type="Script" path="res://scripts/systems/spawn_system/spawn_wave.gd" id="3_xgibl"]
+
+[sub_resource type="Resource" id="Resource_n0jv7"]
+script = ExtResource("3_xgibl")
+enemy = ExtResource("2_fkmtl")
+spawn_amount = 10
+spawn_duration = 4.0
+break_time = 1.0
+
+[sub_resource type="Resource" id="Resource_lrlsk"]
+script = ExtResource("3_xgibl")
+enemy = ExtResource("2_fkmtl")
+spawn_amount = 10
+spawn_duration = 4.0
+break_time = 1.0
+
+[sub_resource type="Resource" id="Resource_h01me"]
+script = ExtResource("3_xgibl")
+enemy = ExtResource("2_fkmtl")
+spawn_amount = 10
+spawn_duration = 4.0
+break_time = 1.0
+
+[sub_resource type="Resource" id="Resource_h1fra"]
+script = ExtResource("3_xgibl")
+enemy = ExtResource("2_fkmtl")
+spawn_amount = 10
+spawn_duration = 4.0
+break_time = 1.0
+
+[resource]
+script = ExtResource("1_hao1p")
+waves = Array[ExtResource("3_xgibl")]([SubResource("Resource_n0jv7"), SubResource("Resource_lrlsk"), SubResource("Resource_h01me"), SubResource("Resource_h1fra")])
