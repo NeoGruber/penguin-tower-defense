@@ -15,10 +15,11 @@ func _ready():
 	attack_timer.timeout.connect(handle_attack_timer)
 	rotation_timer.timeout.connect(handle_rotation_timer)
 	rotation_start_timer.timeout.connect(start_rotation_timer)
+	configure_timers()
 
 func set_stats(attack_speed: float):
 	tower_attack_speed = attack_speed
-	
+	configure_timers()
 
 func configure_timers():
 	attack_time = base_attack_time / tower_attack_speed
@@ -30,6 +31,10 @@ func configure_timers():
 func start_attacking():
 	attack_timer.start()
 	rotation_start_timer.start()
+
+func stop_attacking():
+	attack_timer.stop()
+	rotation_start_timer.stop()
 
 func handle_attack_timer():
 	rotation_timer.start()

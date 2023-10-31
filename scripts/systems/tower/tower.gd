@@ -29,6 +29,10 @@ signal show_tower_information(tower)
 func _ready():
 	tower_attack_handler.attack.connect(handle_attack)
 	tower_attack_handler.rotate.connect(handle_rotate)
+	
+	enemy_handler.enemy_entered_tower_range.connect(handle_enemy_entered_tower_range)
+	enemy_handler.no_enemies_in_tower_range.connect(handle_no_enemies_in_tower_range)
+	
 	input_system.left_mouse_button_click.connect(handle_left_mouse_button_click)
 	setup_tower_range()
 
@@ -100,3 +104,24 @@ func handle_attack(attack_time: float):
 
 func handle_rotate(rotate_time: float):
 	print("rotate: ", rotate_time)
+	
+func handle_enemy_entered_tower_range():
+	tower_attack_handler.start_attacking()
+
+func handle_no_enemies_in_tower_range():
+	tower_attack_handler.stop_attacking()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

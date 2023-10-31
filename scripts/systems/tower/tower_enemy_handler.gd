@@ -1,6 +1,11 @@
 extends Node
 
 var enemies_in_range = {}
+var enemies_in_range_counter = 0
+
+signal enemy_entered_tower_range()
+
+signal no_enemies_in_tower_range()
 
 func get_first_enemy(): # get the enemy who is closest to map end
 	if enemies_in_range.is_empty():
@@ -70,6 +75,11 @@ func _on_enemy_detection_area_body_entered(enemy: Node2D):
 	if enemy == get_parent(): return
 	if !enemy.is_in_group("enemy"): return
 	
+	if enemies_in_range_counter == 0:
+		enemy_entered_tower_range.emit()
+
+	enemies_in_range_counter += 1
+	
 	if !enemies_in_range.has(enemy.path_index):
 		enemies_in_range[enemy.path_index] = []
 	
@@ -79,6 +89,11 @@ func _on_enemy_detection_area_body_entered(enemy: Node2D):
 func _on_enemy_detection_area_body_exited(enemy: Node2D):
 	if enemy == get_parent(): return
 	if !enemy.is_in_group("enemy"): return
+	
+	enemies_in_range_counter -= 1
+	
+	if enemies_in_range_counter == 0:
+		enemy_entered_tower_range.emit()
 
 	enemy.path_index_changed.disconnect(handle_enemy_path_index_changed)
 	enemies_in_range[enemy.path_index].erase(enemy)
