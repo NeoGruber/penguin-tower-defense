@@ -2,7 +2,6 @@ extends Node
 
 var menu_scene = preload("res://scenes/game_scenes/menu_scene.tscn").instantiate()
 var game_scene = preload("res://scenes/game_scenes/game_scene.tscn").instantiate()
-var game_scene2 = preload("res://scenes/game_scenes/game_scene2.tscn").instantiate()
 
 var current_scene = null;
 
@@ -28,7 +27,3 @@ func switch_scene(scene_name):
 	if scene_name == "game_scene":
 		main.add_child.call_deferred(game_scene)
 		current_scene = game_scene;
-	
-	if scene_name == "game_scene2":
-		main.add_child.call_deferred(game_scene2)
-		current_scene = game_scene

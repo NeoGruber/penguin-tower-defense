@@ -10,7 +10,7 @@ signal path_index_changed(node, index)
 
 var path_index = 0
 
-func _physics_process(delta):
+func _process(_delta):
 	if path_index < enemy_walk_path.marker_amount - 1:
 		handle_path_finding()
 		handle_rotation()

@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://djw6y1i2j5b5p"]
 
 [ext_resource type="Script" path="res://scripts/systems/spawn_system/spawn_system.gd" id="1_w16n6"]
-[ext_resource type="Resource" uid="uid://bcbepk50rj0gk" path="res://resources/spawn_round_1.tres" id="2_lu6jn"]
-[ext_resource type="Resource" uid="uid://dc2psei6d0tse" path="res://resources/spawn_round_2.tres" id="3_s7ex2"]
-[ext_resource type="Resource" uid="uid://csrwneh0esrpv" path="res://resources/spawn_round_3.tres" id="4_cte7j"]
+[ext_resource type="Resource" uid="uid://bcbepk50rj0gk" path="res://resources/spawn_rounds/spawn_round_1.tres" id="2_lu6jn"]
+[ext_resource type="Resource" uid="uid://dc2psei6d0tse" path="res://resources/spawn_rounds/spawn_round_2.tres" id="3_s7ex2"]
+[ext_resource type="Resource" uid="uid://csrwneh0esrpv" path="res://resources/spawn_rounds/spawn_round_3.tres" id="4_cte7j"]
 
 [node name="SpawnHandler" type="Node"]
 script = ExtResource("1_w16n6")

@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://cxwbk7q2arh36"]
 
-[ext_resource type="Script" path="res://scripts/tower/Tower.gd" id="1_ukq8y"]
-[ext_resource type="Script" path="res://scenes/entity_scenes/tower_attack_handler.gd" id="2_b8bbu"]
+[ext_resource type="Script" path="res://scripts/systems/tower/tower.gd" id="1_ukq8y"]
+[ext_resource type="Script" path="res://scripts/systems/tower/tower_attack_handler.gd" id="2_b8bbu"]
 [ext_resource type="Texture2D" uid="uid://dk6lmk3cqlgdf" path="res://assets/enemy_placeholder.png" id="2_ucmkh"]
-[ext_resource type="Script" path="res://scripts/tower/TowerEnemyHandler.gd" id="2_vi7ro"]
+[ext_resource type="Script" path="res://scripts/systems/tower/tower_enemy_handler.gd" id="2_vi7ro"]
 [ext_resource type="Texture2D" uid="uid://bqk3yub2byf55" path="res://assets/tower_range.png" id="3_v1346"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7bbt8"]

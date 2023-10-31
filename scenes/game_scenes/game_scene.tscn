@@ -1,19 +1,15 @@
 [gd_scene load_steps=9 format=3 uid="uid://bv156ine3pyi3"]
 
-[ext_resource type="PackedScene" uid="uid://djw6y1i2j5b5p" path="res://scenes/spawn_handler.tscn" id="1_584g3"]
-[ext_resource type="PackedScene" uid="uid://bxafbr6alb0pl" path="res://scenes/enemy_walk_path.tscn" id="1_dqior"]
+[ext_resource type="PackedScene" uid="uid://djw6y1i2j5b5p" path="res://scenes/system_scenes/spawn_handler.tscn" id="1_k2hg0"]
 [ext_resource type="Texture2D" uid="uid://b2podqnorrva5" path="res://assets/map.png" id="1_okpt7"]
-[ext_resource type="Script" path="res://scripts/systems/spawn_system/EnemySpawner.gd" id="2_kb53j"]
-[ext_resource type="Script" path="res://scripts/game_ui_manager.gd" id="5_khjxf"]
+[ext_resource type="Script" path="res://scripts/systems/spawn_system/enemy_spawner.gd" id="2_v7tyw"]
+[ext_resource type="PackedScene" uid="uid://bxafbr6alb0pl" path="res://scenes/entity_scenes/enemy_walk_path.tscn" id="4_avmsa"]
 [ext_resource type="PackedScene" uid="uid://cxwbk7q2arh36" path="res://scenes/entity_scenes/tower.tscn" id="6_6alyy"]
+[ext_resource type="Script" path="res://scripts/ui/game_ui_manager.gd" id="6_amucg"]
 [ext_resource type="PackedScene" uid="uid://cs40qs01w3q2v" path="res://scenes/ui_scenes/tower_ui_controller.tscn" id="7_gyoyw"]
 
 [sub_resource type="GDScript" id="GDScript_6e5p7"]
 script/source = "extends Node
-
-func _input(event):
-	if event.is_action_pressed(\"debug_button_0\"):
-		get_tree().root.get_node(\"Main/SceneManager\").switch_scene(\"game_scene2\")
 "
 
 [node name="GameScene" type="Node"]
@@ -21,17 +17,17 @@ script = SubResource("GDScript_6e5p7")
 
 [node name="Game" type="Node2D" parent="."]
 
-[node name="SpawnSystem" parent="Game" instance=ExtResource("1_584g3")]
+[node name="SpawnSystem" parent="Game" instance=ExtResource("1_k2hg0")]
 
 [node name="EnemySpawner" type="Node" parent="Game/SpawnSystem"]
-script = ExtResource("2_kb53j")
+script = ExtResource("2_v7tyw")
 
 [node name="Map" type="Sprite2D" parent="Game"]
 position = Vector2(642.5, 362.5)
 scale = Vector2(0.684896, 0.682407)
 texture = ExtResource("1_okpt7")
 
-[node name="EnemyWalkPath" parent="Game" node_paths=PackedStringArray("markers") instance=ExtResource("1_dqior")]
+[node name="EnemyWalkPath" parent="Game" node_paths=PackedStringArray("markers") instance=ExtResource("4_avmsa")]
 markers = [NodePath("Marker2D"), NodePath("Marker2D2"), NodePath("Marker2D3"), NodePath("Marker2D4"), NodePath("Marker2D5"), NodePath("Marker2D5"), NodePath("Marker2D6"), NodePath("Marker2D7"), NodePath("Marker2D8"), NodePath("Marker2D9"), NodePath("Marker2D10"), NodePath("Marker2D11"), NodePath("Marker2D12"), NodePath("Marker2D13"), NodePath("Marker2D14"), NodePath("Marker2D15"), NodePath("Marker2D16"), NodePath("Marker2D17"), NodePath("Marker2D18"), NodePath("Marker2D19"), NodePath("Marker2D20"), NodePath("Marker2D21"), NodePath("Marker2D22"), NodePath("Marker2D23"), NodePath("Marker2D24"), NodePath("Marker2D25"), NodePath("Marker2D26"), NodePath("Marker2D27"), NodePath("Marker2D28"), NodePath("Marker2D29")]
 
 [node name="Marker2D" parent="Game/EnemyWalkPath" index="0"]
@@ -147,7 +143,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("5_khjxf")
+script = ExtResource("6_amucg")
 
 [node name="Panel" type="Panel" parent="GameUI"]
 layout_mode = 1

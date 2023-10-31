@@ -32,7 +32,7 @@ func _ready():
 	input_system.left_mouse_button_click.connect(handle_left_mouse_button_click)
 	setup_tower_range()
 
-func _process(delta):
+func _process(_delta):
 	look_at_enemy()
 
 func setup_tower_range():
@@ -64,7 +64,7 @@ func handle_left_mouse_button_click():
 	show_tower_information.emit(self)
 
 func inc_tower_mode_sequence():
-	var tower_mode_index = tower_mode
+	var tower_mode_index = int(tower_mode)
 	if tower_mode_index == 4:
 		tower_mode_index = 0
 	else:
@@ -73,7 +73,7 @@ func inc_tower_mode_sequence():
 	tower_mode = tower_mode_sequence[tower_mode_index]
 
 func dec_tower_mode_sequence():
-	var tower_mode_index = tower_mode
+	var tower_mode_index = int(tower_mode)
 	if tower_mode_index == 0:
 		tower_mode_index = 4
 	else:
