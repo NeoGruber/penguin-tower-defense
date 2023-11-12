@@ -1,4 +1,4 @@
-class_name GameManager
+class_name MyGameManager
 extends Node2D
 
 signal live_changed(lives)

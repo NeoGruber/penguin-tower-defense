@@ -1,7 +1,7 @@
 extends Node
 
-var _projectile = preload("res://scenes/entity_scenes/projectile.tscn")
-var _sweap = preload("res://scenes/entity_scenes/sweap.tscn")
+var _projectile = preload("res://scenes/entity_scenes/tower_scenes/projectile.tscn")
+var _sweap = preload("res://scenes/entity_scenes/tower_scenes/sweap.tscn")
 
 @onready var tower: Tower = get_parent()
 @onready var spawned_projectiles = get_tree().get_first_node_in_group("SpawnedProjectiles")

@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://bv156ine3pyi3"]
 
+[ext_resource type="Script" path="res://scripts/managers/game_manager.gd" id="1_brvtl"]
 [ext_resource type="Script" path="res://scripts/systems/resource_system/resource_system.gd" id="1_jsx3r"]
 [ext_resource type="PackedScene" uid="uid://djw6y1i2j5b5p" path="res://scenes/system_scenes/spawn_handler.tscn" id="1_k2hg0"]
 [ext_resource type="Texture2D" uid="uid://b2podqnorrva5" path="res://assets/map.png" id="1_okpt7"]
-[ext_resource type="Script" path="res://scenes/game_scenes/GameManager.gd" id="2_tkwia"]
-[ext_resource type="PackedScene" uid="uid://cxwbk7q2arh36" path="res://scenes/entity_scenes/tower.tscn" id="6_6alyy"]
+[ext_resource type="PackedScene" uid="uid://cxwbk7q2arh36" path="res://scenes/entity_scenes/tower_scenes/tower.tscn" id="6_6alyy"]
 [ext_resource type="Script" path="res://scripts/ui/game_ui_manager.gd" id="6_amucg"]
 [ext_resource type="PackedScene" uid="uid://cs40qs01w3q2v" path="res://scenes/ui_scenes/tower_ui_controller.tscn" id="7_gyoyw"]
 [ext_resource type="PackedScene" uid="uid://ubjgi0bm71c2" path="res://scenes/ui_scenes/pause_game.tscn" id="10_de4n3"]
@@ -20,7 +20,7 @@ point_count = 53
 [node name="GameScene" type="Node"]
 
 [node name="Game" type="Node2D" parent="."]
-script = ExtResource("2_tkwia")
+script = ExtResource("1_brvtl")
 
 [node name="Map" type="Sprite2D" parent="Game"]
 position = Vector2(642.5, 362.5)
