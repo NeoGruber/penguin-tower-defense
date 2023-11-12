@@ -3,9 +3,51 @@ extends Node
 var enemies_in_range = {}
 var enemies_in_range_counter = 0
 
-signal enemy_entered_tower_range()
+var tower_mode: TowerEnums.TowerMode = TowerEnums.TowerMode.first
 
+var tower_mode_sequence = [
+	TowerEnums.TowerMode.first,
+	TowerEnums.TowerMode.last,
+	TowerEnums.TowerMode.nearest,
+	TowerEnums.TowerMode.furthest,
+	TowerEnums.TowerMode.strongest,
+]
+
+var target_enemy: Node2D = null
+
+signal enemy_entered_tower_range()
 signal no_enemies_in_tower_range()
+
+func get_target_enemy():
+	if tower_mode == TowerEnums.TowerMode.first:
+		target_enemy = get_first_enemy()
+	if tower_mode == TowerEnums.TowerMode.last:
+		target_enemy = get_last_enemy()
+	if tower_mode == TowerEnums.TowerMode.nearest:
+		target_enemy = get_closest_enemy()
+	if tower_mode == TowerEnums.TowerMode.furthest:
+		target_enemy = get_furthest_enemy()
+	if tower_mode == TowerEnums.TowerMode.strongest:
+		target_enemy = get_last_enemy()
+	return target_enemy
+
+func inc_tower_mode_sequence():
+	var tower_mode_index = int(tower_mode)
+	if tower_mode_index == 4:
+		tower_mode_index = 0
+	else:
+		tower_mode_index += 1
+	
+	tower_mode = tower_mode_sequence[tower_mode_index]
+
+func dec_tower_mode_sequence():
+	var tower_mode_index = int(tower_mode)
+	if tower_mode_index == 0:
+		tower_mode_index = 4
+	else:
+		tower_mode_index -= 1
+	
+	tower_mode = tower_mode_sequence[tower_mode_index]
 
 func get_first_enemy(): # get the enemy who is closest to map end
 	if enemies_in_range.is_empty():
@@ -71,7 +113,9 @@ func handle_enemy_path_index_changed(enemy: Node2D, index):
 		enemies_in_range[index] = []
 	enemies_in_range[index].append(enemy)
 
-func _on_enemy_detection_area_body_entered(enemy: Node2D):
+func _on_enemy_detection_area_area_entered(area):
+	print("entered")
+	var enemy = area.get_parent()
 	if enemy == get_parent(): return
 	if !enemy.is_in_group("enemy"): return
 	
@@ -80,13 +124,15 @@ func _on_enemy_detection_area_body_entered(enemy: Node2D):
 
 	enemies_in_range_counter += 1
 	
-	if !enemies_in_range.has(enemy.path_index):
-		enemies_in_range[enemy.path_index] = []
+	if !enemies_in_range.has(enemy.current_progress_ratio):
+		enemies_in_range[enemy.current_progress_ratio] = []
 	
-	enemies_in_range[enemy.path_index].append(enemy)
+	enemies_in_range[enemy.current_progress_ratio].append(enemy)
 	enemy.path_index_changed.connect(handle_enemy_path_index_changed)
 
-func _on_enemy_detection_area_body_exited(enemy: Node2D):
+
+func _on_enemy_detection_area_area_exited(area):
+	var enemy = area.get_parent()
 	if enemy == get_parent(): return
 	if !enemy.is_in_group("enemy"): return
 	
@@ -96,4 +142,4 @@ func _on_enemy_detection_area_body_exited(enemy: Node2D):
 		enemy_entered_tower_range.emit()
 
 	enemy.path_index_changed.disconnect(handle_enemy_path_index_changed)
-	enemies_in_range[enemy.path_index].erase(enemy)
+	enemies_in_range[enemy.current_progress_ratio].erase(enemy)

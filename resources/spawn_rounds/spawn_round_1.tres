@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SpawnRound" load_steps=7 format=3 uid="uid://bcbepk50rj0gk"]
+[gd_resource type="Resource" script_class="SpawnRound" load_steps=5 format=3 uid="uid://bcbepk50rj0gk"]
 
 [ext_resource type="Script" path="res://scripts/systems/spawn_system/spawn_round.gd" id="1_0846m"]
 [ext_resource type="PackedScene" uid="uid://demvrv03udy2r" path="res://scenes/entity_scenes/enemy.tscn" id="2_nvdf4"]
@@ -7,24 +7,10 @@
 [sub_resource type="Resource" id="Resource_j00yt"]
 script = ExtResource("3_nb6xc")
 enemy = ExtResource("2_nvdf4")
-spawn_amount = 10
-spawn_duration = 5.0
+spawn_amount = 30
+spawn_duration = 30.0
 break_time = 1.0
-
-[sub_resource type="Resource" id="Resource_8wn3f"]
-script = ExtResource("3_nb6xc")
-enemy = ExtResource("2_nvdf4")
-spawn_amount = 20
-spawn_duration = 3.0
-break_time = 1.0
-
-[sub_resource type="Resource" id="Resource_78tqt"]
-script = ExtResource("3_nb6xc")
-enemy = ExtResource("2_nvdf4")
-spawn_amount = 10
-spawn_duration = 4.0
-break_time = 3.0
 
 [resource]
 script = ExtResource("1_0846m")
-waves = Array[ExtResource("3_nb6xc")]([SubResource("Resource_j00yt"), SubResource("Resource_8wn3f"), SubResource("Resource_78tqt")])
+waves = Array[ExtResource("3_nb6xc")]([SubResource("Resource_j00yt")])

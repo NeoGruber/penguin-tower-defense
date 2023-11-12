@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=3 uid="uid://ubjgi0bm71c2"]
+
+[ext_resource type="Script" path="res://scripts/ui/pause_game_manager.gd" id="1_6iecl"]
+
+[node name="PauseGame" type="Panel"]
+offset_right = 172.0
+offset_bottom = 196.0
+script = ExtResource("1_6iecl")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Continue"
+
+[node name="OptionsButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "Options"
+
+[node name="SaveMenuButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Save & Menu"
+
+[node name="SaveExitButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Save & Exit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/SaveMenuButton" to="." method="_on_save_menu_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/SaveExitButton" to="." method="_on_save_exit_button_pressed"]

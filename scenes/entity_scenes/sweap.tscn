@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://b73nvonndpiy4"]
+
+[ext_resource type="Texture2D" uid="uid://b357e4ttkl6y8" path="res://assets/projectile.png" id="1_5w37t"]
+[ext_resource type="Script" path="res://scripts/sweap.gd" id="1_rks72"]
+[ext_resource type="PackedScene" uid="uid://2jpalvrutocg" path="res://scenes/system_scenes/hit-hurt-box/hitbox.tscn" id="3_gcxt0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f4fks"]
+size = Vector2(60, 10)
+
+[node name="Sweap" type="Node2D"]
+script = ExtResource("1_rks72")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(25, 0)
+scale = Vector2(1.5, 0.5)
+texture = ExtResource("1_5w37t")
+
+[node name="Hitbox" parent="." instance=ExtResource("3_gcxt0")]
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(25, 0)
+shape = SubResource("RectangleShape2D_f4fks")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+scale = Vector2(0.407021, 0.804037)
+texture = ExtResource("1_5w37t")
+
+[editable path="Hitbox"]

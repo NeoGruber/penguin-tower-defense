@@ -1,13 +1,15 @@
+class_name EnemySpawner
 extends Node
 
-@onready var enemy_walk_path = get_node("/root/Main/GameScene/Game/EnemyWalkPath")
-
 var spawn_point: Vector2
+var path: Path2D
 
 func _ready():
-	spawn_point = enemy_walk_path.markers[0].position
+	path = get_tree().get_first_node_in_group("Path2D")
+	spawn_point = path.curve.get_baked_points()[0]
 
 func spawn_enemy(enemy: Resource):
 	var new_enemy = enemy.instantiate()
 	new_enemy.position = spawn_point
-	add_child(new_enemy)
+	path.add_child(new_enemy)
+	return new_enemy

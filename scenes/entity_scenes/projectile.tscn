@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://di0r24hhc6g2m"]
+
+[ext_resource type="Script" path="res://scripts/projectile.gd" id="1_nhp86"]
+[ext_resource type="PackedScene" uid="uid://2jpalvrutocg" path="res://scenes/system_scenes/hit-hurt-box/hitbox.tscn" id="1_np5qu"]
+[ext_resource type="Texture2D" uid="uid://b357e4ttkl6y8" path="res://assets/projectile.png" id="2_ydqe6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cortq"]
+size = Vector2(40, 10)
+
+[node name="Projectile" type="CharacterBody2D"]
+script = ExtResource("1_nhp86")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1, 0.5)
+texture = ExtResource("2_ydqe6")
+
+[node name="Hitbox" parent="." instance=ExtResource("1_np5qu")]
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("RectangleShape2D_cortq")
+
+[node name="Timer" type="Timer" parent="."]
+
+[editable path="Hitbox"]

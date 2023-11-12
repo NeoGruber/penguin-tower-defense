@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjnd4fomfe8yn"]
+
+[ext_resource type="Texture2D" uid="uid://dk6lmk3cqlgdf" path="res://assets/enemy_placeholder.png" id="1_a4kka"]
+[ext_resource type="Script" path="res://scripts/build_preview_tower.gd" id="2_ua2wg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3iawj"]
+radius = 25.0
+
+[node name="TestScene" type="Node"]
+
+[node name="Game" type="Node2D" parent="."]
+
+[node name="BuildPreviewTower" type="Sprite2D" parent="Game"]
+texture = ExtResource("1_a4kka")
+script = ExtResource("2_ua2wg")
+
+[node name="Area2D" type="Area2D" parent="Game/BuildPreviewTower"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Game/BuildPreviewTower/Area2D"]
+shape = SubResource("CircleShape2D_3iawj")
+
+[node name="Control" type="Control" parent="Game/BuildPreviewTower"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -56.0
+offset_top = -113.0
+offset_right = 61.0
+offset_bottom = -44.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Game/BuildPreviewTower/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BuildButton" type="Button" parent="Game/BuildPreviewTower/Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "build"
+
+[node name="CancelButton" type="Button" parent="Game/BuildPreviewTower/Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "cancel
+"
+
+[node name="BlockedBuildArea" type="Area2D" parent="Game" groups=["blocked_build_area"]]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Game/BlockedBuildArea"]
+position = Vector2(171, 135)
+polygon = PackedVector2Array(103, 35, 103, 35, 19, 186, 314, 295, 384, 103, 225, 5)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Game/BlockedBuildArea"]
+polygon = PackedVector2Array(388, 59, 652, 91, 621, 29)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Game/BlockedBuildArea"]
+polygon = PackedVector2Array(650, 427, 721, 223, 982, 234, 968, 437, 748, 456)
+
+[connection signal="area_entered" from="Game/BuildPreviewTower/Area2D" to="Game/BuildPreviewTower" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Game/BuildPreviewTower/Area2D" to="Game/BuildPreviewTower" method="_on_area_2d_area_exited"]
+[connection signal="mouse_entered" from="Game/BuildPreviewTower/Area2D" to="Game/BuildPreviewTower" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Game/BuildPreviewTower/Area2D" to="Game/BuildPreviewTower" method="_on_area_2d_mouse_exited"]

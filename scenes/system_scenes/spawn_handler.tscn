@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://djw6y1i2j5b5p"]
+[gd_scene load_steps=6 format=3 uid="uid://djw6y1i2j5b5p"]
 
 [ext_resource type="Script" path="res://scripts/systems/spawn_system/spawn_system.gd" id="1_w16n6"]
 [ext_resource type="Resource" uid="uid://bcbepk50rj0gk" path="res://resources/spawn_rounds/spawn_round_1.tres" id="2_lu6jn"]
-[ext_resource type="Resource" uid="uid://dc2psei6d0tse" path="res://resources/spawn_rounds/spawn_round_2.tres" id="3_s7ex2"]
-[ext_resource type="Resource" uid="uid://csrwneh0esrpv" path="res://resources/spawn_rounds/spawn_round_3.tres" id="4_cte7j"]
+[ext_resource type="Resource" uid="uid://bjim4dvp78bfw" path="res://resources/spawn_rounds/spawn_round_2.tres" id="3_s7ex2"]
+[ext_resource type="Resource" uid="uid://bq63ogw888780" path="res://resources/spawn_rounds/spawn_round_3.tres" id="4_cte7j"]
+[ext_resource type="Script" path="res://scripts/systems/spawn_system/enemy_spawner.gd" id="5_cyy3p"]
 
-[node name="SpawnHandler" type="Node"]
+[node name="SpawnSystem" type="Node"]
 script = ExtResource("1_w16n6")
 spawn_rounds = Array[Resource("res://scripts/systems/spawn_system/spawn_round.gd")]([ExtResource("2_lu6jn"), ExtResource("3_s7ex2"), ExtResource("4_cte7j")])
 
@@ -15,3 +16,6 @@ one_shot = true
 [node name="WaveBreakTimer" type="Timer" parent="."]
 
 [node name="SpawnTimer" type="Timer" parent="."]
+
+[node name="EnemySpawner" type="Node" parent="."]
+script = ExtResource("5_cyy3p")

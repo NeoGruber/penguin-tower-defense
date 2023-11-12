@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxwbk7q2arh36"]
+[gd_scene load_steps=9 format=3 uid="uid://cxwbk7q2arh36"]
 
 [ext_resource type="Script" path="res://scripts/systems/tower/tower.gd" id="1_ukq8y"]
-[ext_resource type="Script" path="res://scripts/systems/tower/tower_attack_handler.gd" id="2_b8bbu"]
+[ext_resource type="Script" path="res://scripts/systems/tower/tower_attack_time_handler.gd" id="2_4qaa2"]
 [ext_resource type="Texture2D" uid="uid://dk6lmk3cqlgdf" path="res://assets/enemy_placeholder.png" id="2_ucmkh"]
 [ext_resource type="Script" path="res://scripts/systems/tower/tower_enemy_handler.gd" id="2_vi7ro"]
 [ext_resource type="Texture2D" uid="uid://bqk3yub2byf55" path="res://assets/tower_range.png" id="3_v1346"]
+[ext_resource type="Script" path="res://scripts/systems/tower/TowerAttackHandler.gd" id="4_68tnn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7bbt8"]
 radius = 100.0
@@ -15,20 +16,19 @@ radius = 25.0
 [node name="Tower" type="CharacterBody2D" groups=["tower"]]
 input_pickable = true
 script = ExtResource("1_ukq8y")
-tower_radius = 150
+tower_radius = 100
+tower_weapon = 2
 
-[node name="TowerAttackHandler" type="Node" parent="."]
-script = ExtResource("2_b8bbu")
+[node name="TowerAttackTimeHandler" type="Node" parent="."]
+script = ExtResource("2_4qaa2")
 
-[node name="AttackTimer" type="Timer" parent="TowerAttackHandler"]
-
-[node name="RotationTimer" type="Timer" parent="TowerAttackHandler"]
-
-[node name="RotationStartTimer" type="Timer" parent="TowerAttackHandler"]
-one_shot = true
+[node name="AttackTimer" type="Timer" parent="TowerAttackTimeHandler"]
 
 [node name="EnemyHandler" type="Node" parent="."]
 script = ExtResource("2_vi7ro")
+
+[node name="TowerAttackHandler" type="Node" parent="."]
+script = ExtResource("4_68tnn")
 
 [node name="EnemyDetectionArea" type="Area2D" parent="."]
 
@@ -50,5 +50,5 @@ shape = SubResource("CircleShape2D_qotfx")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
-[connection signal="body_entered" from="EnemyDetectionArea" to="EnemyHandler" method="_on_enemy_detection_area_body_entered"]
-[connection signal="body_exited" from="EnemyDetectionArea" to="EnemyHandler" method="_on_enemy_detection_area_body_exited"]
+[connection signal="area_entered" from="EnemyDetectionArea" to="EnemyHandler" method="_on_enemy_detection_area_area_entered"]
+[connection signal="area_exited" from="EnemyDetectionArea" to="EnemyHandler" method="_on_enemy_detection_area_area_exited"]

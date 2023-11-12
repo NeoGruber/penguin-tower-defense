@@ -1,4 +1,7 @@
+class_name SpawnSystem
 extends Node
+
+signal enemy_spawned(ememy)
 
 @export var debug: bool = false
 @export var autostart_rounds: bool = false
@@ -9,6 +12,7 @@ extends Node
 @onready var game_ui_manager = get_node("../../GameUI")
 @onready var enemy_spawner = $EnemySpawner
 
+
 var max_round: int = 0
 var current_round: int = 0
 var last_wave: int = 0
@@ -18,6 +22,7 @@ var current_wave_total_spawn_amount: int = 0
 var current_spawn_wave: SpawnWave = null
 
 func _ready():
+	
 	game_ui_manager.round_start_button_pressed.connect(handle_round_start_button_pressed)
 	game_ui_manager.autostart_toggle_pressed.connect(handle_autostart_toggle_pressed)
 	
@@ -64,7 +69,8 @@ func handle_spawn_wave():
 func handle_enemy_spawn():
 	print_debug_foo(current_wave)
 	var enemy = spawn_rounds[current_round].waves[current_wave].enemy
-	enemy_spawner.spawn_enemy(enemy)
+	var spawned_enemy = enemy_spawner.spawn_enemy(enemy)
+	enemy_spawned.emit(spawned_enemy)
 	
 	if current_wave_spawned_amount >= current_wave_total_spawn_amount:
 		current_wave_spawned_amount = 0

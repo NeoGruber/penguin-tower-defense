@@ -19,7 +19,7 @@ func handle_show_tower_information(tower: Node2D):
 	self.visible = true
 
 func set_tower_mode_label():
-	var tower_mode = TowerMode.TowerMode.keys()[current_tower.tower_mode]
+	var tower_mode = TowerEnums.TowerMode.keys()[current_tower.enemy_handler.tower_mode]
 	tower_mode_label.text = str(tower_mode)
 
 func set_toggle_tower_range_button_text():
@@ -35,14 +35,15 @@ func add_tower_to_observe(tower):
 	tower.show_tower_information.connect(handle_show_tower_information)
 
 func _on_tower_mode_left_button_pressed():
-	current_tower.dec_tower_mode_sequence()
+	current_tower.enemy_handler.dec_tower_mode_sequence()
 	set_tower_mode_label()
 
 func _on_tower_mode_right_button_pressed():
-	current_tower.inc_tower_mode_sequence()
+	current_tower.enemy_handler.inc_tower_mode_sequence()
 	set_tower_mode_label()
 
 func _on_close_info_button_pressed():
+	current_tower.hide_tower_range()
 	current_tower = null
 	self.hide()
 
